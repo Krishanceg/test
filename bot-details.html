@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Details | AlgoTrade</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/bot-details.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo.svg" alt="AlgoTrade">
+                <span>AlgoTrade</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="bot-creator.html">
+                            <i class="fas fa-robot"></i>
+                            <span>Create Bot</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-history"></i>
+                            <span>History</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="assets/user-avatar.png" alt="User">
+                    <div class="user-info">
+                        <span class="username">John Doe</span>
+                        <span class="user-email">john@example.com</span>
+                    </div>
+                    <button id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <button id="back-button" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </button>
+                <h1>Bot Details</h1>
+            </header>
+            
+            <div class="bot-details-container">
+                <div class="bot-info-card">
+                    <div class="bot-header">
+                        <h2 id="bot-name">Loading...</h2>
+                        <span id="bot-status" class="status status-active">Active</span>
+                    </div>
+                    
+                    <div class="bot-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Strategy</span>
+                            <span id="bot-strategy" class="meta-value">-</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Asset Pair</span>
+                            <span id="bot-asset-pair" class="meta-value">-</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Timeframe</span>
+                            <span id="bot-timeframe" class="meta-value">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bot-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Profit</span>
+                            <span id="total-profit" class="stat-value positive">$0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Win Rate</span>
+                            <span id="win-rate" class="stat-value">0%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Trades</span>
+                            <span id="total-trades" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Sharpe Ratio</span>
+                            <span id="sharpe-ratio" class="stat-value">0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bot-rating-container">
+                        <div class="rating-display">
+                            <span class="rating-label">Rating:</span>
+                            <span id="rating-stars" class="stars"></span>
+                            <span id="rating-value" class="rating-value">0.0</span>
+                        </div>
+                        <div class="rating-control" id="rate-bot">
+                            <span class="rating-label">Your Rating:</span>
+                            <i class="far fa-star star" data-value="1"></i>
+                            <i class="far fa-star star" data-value="2"></i>
+                            <i class="far fa-star star" data-value="3"></i>
+                            <i class="far fa-star star" data-value="4"></i>
+                            <i class="far fa-star star" data-value="5"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bot-params-card">
+                    <h3>Risk Parameters</h3>
+                    <div class="params-grid">
+                        <div class="param-item">
+                            <span class="param-label">Max Investment</span>
+                            <span id="bot-investment" class="param-value">0%</span>
+                        </div>
+                        <div class="param-item">
+                            <span class="param-label">Stop Loss</span>
+                            <span id="bot-stop-loss" class="param-value">0%</span>
+                        </div>
+                        <div class="param-item">
+                            <span class="param-label">Take Profit</span>
+                            <span id="bot-take-profit" class="param-value">0%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bot-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-play"></i> Start Bot
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-pause"></i> Pause Bot
+                        </button>
+                        <button class="btn btn-danger">
+                            <i class="fas fa-trash"></i> Delete Bot
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="performance-chart-card">
+                    <div class="chart-container">
+                        <canvas id="performance-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="chart-container small">
+                            <canvas id="win-rate-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="chart-container small">
+                            <canvas id="returns-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="trades-table-card">
+                    <h3>Recent Trades</h3>
+                    <div class="table-responsive">
+                        <table id="trades-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Price</th>
+                                    <th>Amount</th>
+                                    <th>Profit</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Trades will be loaded here dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="scripts/chart.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>

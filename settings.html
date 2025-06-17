@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | AlgoTrade</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo.svg" alt="AlgoTrade">
+                <span>AlgoTrade</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="bot-creator.html">
+                            <i class="fas fa-robot"></i>
+                            <span>Create Bot</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-history"></i>
+                            <span>History</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="assets/user-avatar.png" alt="User">
+                    <div class="user-info">
+                        <span class="username">John Doe</span>
+                        <span class="user-email">john@example.com</span>
+                    </div>
+                    <button id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Settings</h1>
+                <div class="header-actions">
+                    <button id="save-settings" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+            </header>
+            
+            <div class="settings-container">
+                <div class="settings-tabs">
+                    <button class="tab-btn active" data-tab="general">
+                        <i class="fas fa-user-cog"></i> General
+                    </button>
+                    <button class="tab-btn" data-tab="security">
+                        <i class="fas fa-shield-alt"></i> Security
+                    </button>
+                    <button class="tab-btn" data-tab="notifications">
+                        <i class="fas fa-bell"></i> Notifications
+                    </button>
+                    <button class="tab-btn" data-tab="api">
+                        <i class="fas fa-key"></i> API Keys
+                    </button>
+                </div>
+                
+                <div class="settings-content">
+                    <!-- General Settings Tab -->
+                    <div id="general" class="tab-content active">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-user"></i> Profile Information</h3>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" class="form-control" value="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" class="form-control" value="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="timezone">Timezone</label>
+                                <select id="timezone" class="form-control">
+                                    <option value="UTC" selected>UTC (Coordinated Universal Time)</option>
+                                    <option value="EST">EST (Eastern Standard Time)</option>
+                                    <option value="PST">PST (Pacific Standard Time)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3><i class="fas fa-paint-brush"></i> Appearance</h3>
+                            <div class="form-group">
+                                <label for="theme">Theme</label>
+                                <select id="theme" class="form-control">
+                                    <option value="light">Light</option>
+                                    <option value="dark" selected>Dark</option>
+                                    <option value="system">System Default</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="font-size">Font Size</label>
+                                <input type="range" id="font-size" min="12" max="18" value="14" class="form-range">
+                                <div class="range-value"><span id="font-size-value">14</span>px</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Security Settings Tab -->
+                    <div id="security" class="tab-content">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-lock"></i> Password</h3>
+                            <div class="form-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" class="form-control">
+                                <div class="password-strength">
+                                    <span class="strength-bar"></span>
+                                    <span class="strength-bar"></span>
+                                    <span class="strength-bar"></span>
+                                    <span class="strength-text">Password strength</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm New Password</label>
+                                <input type="password" id="confirm-password" class="form-control">
+                            </div>
+                            <button class="btn btn-primary" id="change-password">
+                                <i class="fas fa-key"></i> Change Password
+                            </button>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3><i class="fas fa-mobile-alt"></i> Two-Factor Authentication</h3>
+                            <div class="two-factor-status">
+                                <span class="status-badge disabled">Disabled</span>
+                                <p>Add an extra layer of security to your account</p>
+                            </div>
+                            <button class="btn btn-outline" id="enable-2fa">
+                                <i class="fas fa-shield-alt"></i> Enable 2FA
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Notifications Settings Tab -->
+                    <div id="notifications" class="tab-content">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-bell"></i> Notification Preferences</h3>
+                            <div class="form-group switch-group">
+                                <label for="email-notifications">Email Notifications</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="email-notifications" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="form-group switch-group">
+                                <label for="push-notifications">Push Notifications</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="push-notifications" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="form-group switch-group">
+                                <label for="trade-alerts">Trade Alerts</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="trade-alerts" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3><i class="fas fa-envelope"></i> Alert Types</h3>
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" checked> Bot Started/Stopped
+                                </label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" checked> Trade Executed
+                                </label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" checked> Profit/Loss Threshold
+                                </label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox"> Market News
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- API Keys Settings Tab -->
+                    <div id="api" class="tab-content">
+                        <div class="settings-card">
+                            <h3><i class="fas fa-key"></i> API Keys</h3>
+                            <p class="api-description">Manage your API keys for connecting third-party applications</p>
+                            
+                            <div class="api-keys-list">
+                                <div class="api-key-item">
+                                    <div class="api-key-info">
+                                        <span class="api-key-name">Trading Bot #1</span>
+                                        <span class="api-key-date">Created: 2023-05-15</span>
+                                    </div>
+                                    <div class="api-key-actions">
+                                        <button class="btn btn-sm btn-outline">
+                                            <i class="fas fa-copy"></i> Copy
+                                        </button>
+                                        <button class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash"></i> Revoke
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="api-key-item">
+                                    <div class="api-key-info">
+                                        <span class="api-key-name">Mobile App</span>
+                                        <span class="api-key-date">Created: 2023-06-20</span>
+                                    </div>
+                                    <div class="api-key-actions">
+                                        <button class="btn btn-sm btn-outline">
+                                            <i class="fas fa-copy"></i> Copy
+                                        </button>
+                                        <button class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash"></i> Revoke
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn btn-primary" id="generate-api-key">
+                                <i class="fas fa-plus"></i> Generate New API Key
+                            </button>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3><i class="fas fa-shield-alt"></i> API Permissions</h3>
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" checked> Read Account Data
+                                </label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" checked> Execute Trades
+                                </label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox"> Withdraw Funds
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="scripts/settings.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>

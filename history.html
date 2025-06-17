@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade History | AlgoTrade</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/history.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Your sidebar -->
+        
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Trade History</h1>
+                <div class="history-filters">
+                    <select id="time-filter">
+                        <option value="all">All Time</option>
+                        <option value="day">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                    <select id="bot-filter">
+                        <option value="all">All Bots</option>
+                        <!-- Options will be populated by JS -->
+                    </select>
+                </div>
+            </header>
+            
+            <div class="history-container">
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Bot</th>
+                            <th>Pair</th>
+                            <th>Action</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>P/L</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Will be populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="scripts/history.js"></script>
+</body>
+</html>
